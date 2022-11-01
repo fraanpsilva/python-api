@@ -1,0 +1,1 @@
+# arquivo ponte entre o app e a base de dados
