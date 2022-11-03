@@ -1,5 +1,5 @@
 from django.contrib import admin
-from escolaapi.models import Aluno, Curso
+from escolaapi.models import Aluno, Curso, Matricula
 
 # configurando 
 class Alunos(admin.ModelAdmin):
@@ -19,3 +19,9 @@ class Cursos(admin.ModelAdmin):
    
 # registrando essa configuração
 admin.site.register(Curso, Cursos)
+
+class Matriculas(admin.ModelAdmin):
+   list_display: ('id', 'aluno', 'curso', 'periodo')
+   list_display_links: ('id',)
+
+admin.site.register(Matricula, Matriculas)
