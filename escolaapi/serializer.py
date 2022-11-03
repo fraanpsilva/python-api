@@ -16,3 +16,35 @@ class MatriculaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matricula
         exclude = [] # outra forma de trazer todas as informações do banco
+
+# classe serializer responsável por listar as matrículas de um aluno
+class ListaMatriculasAlunoSerializer(serializers.ModelSerializer):
+
+    # mostrando o nome do curso e o periodo
+    curso = serializers.ReadOnlyField(source='curso.descricao')
+    periodo = serializers.SerializerMethodField()
+    class Meta:
+        model = Matricula
+        fields = ['curso', 'periodo']
+
+    def get_periodo(self, obj):
+        return obj.get_periodo_display()
+
+# classe para listar as matriculas de um curso
+class ListaAlunosMatriculadosSerializer(serializers.ModelSerializer):
+    aluno_nome = serializers.ReadOnlyField(source='aluno.nome')
+    class Meta:
+        model = Matricula
+        fields = ['aluno_nome']
+
+
+
+
+
+
+
+
+
+
+
+
